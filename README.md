@@ -26,8 +26,9 @@ getgenv().BotConfig = {
 loadstring(game:HttpGet("https://raw.githubusercontent.com/awz3153/3153-BotScript/refs/heads/main/3153-BOT.lua"))()
 ```
 
+
+
 Tween Version:
-Here's the script: (change phrases as needed or fiddle with the thing ingame idfk)
 ```lua
 getgenv().BotConfig = {
 	DefaultPhrases = {
