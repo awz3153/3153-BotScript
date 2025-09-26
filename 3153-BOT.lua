@@ -21,9 +21,8 @@ local UICorner_6 = Instance.new("UICorner")
 
 botscript.Name = "botscript"
 botscript.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-botscript.ResetOnSpawn = false
-botscript.IgnoreGuiInset = true
 botscript.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+botscript.ResetOnSpawn = false
 
 StartButton.Name = "StartButton"
 StartButton.Parent = botscript
@@ -127,10 +126,11 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function GWKM_fake_script() -- botscript.BotMain 
+local function HFAZPFO_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
+	local StarterGui = game:GetService("StarterGui")
 	local chatservice = game:GetService("TextChatService")
 	local textChannel = chatservice:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
 	local startbutton = script.Parent.StartButton
@@ -143,38 +143,63 @@ local function GWKM_fake_script() -- botscript.BotMain
 	local phrases = {}
 	local roots = {}
 	local localplr = Playerservice.LocalPlayer
-
+	
 	local function resettable()
 		phrases = {}
 		for i,v in ipairs(getgenv().BotConfig.DefaultPhrases[1]) do
 			table.insert(phrases,v)
 		end
 	end
-
+	
 	task.spawn(resettable)
-
+	
 	local function onandoff()
 		startbutton.MouseButton1Up:Connect(function(clicked)
 			enabled = true
+			StarterGui:SetCore("SendNotification", {
+				Title = "Script Enabled",
+				Text = "Yay",
+				Duration = 3,
+			})
 		end)
 		stopbutton.MouseButton1Up:Connect(function(clicked)
 			enabled = false
+			StarterGui:SetCore("SendNotification", {
+				Title = "Script Disabled",
+				Text = "Ohnooo",
+				Duration = 3,
+			})
 		end)
 		addphrase.MouseButton1Up:Connect(function(addphrase)
 			local text = phrasebox.Text
 			table.insert(phrases,text)
+			StarterGui:SetCore("SendNotification", {
+				Title = "Phrases inserted",
+				Text = "Inserted: ".. text,
+				Duration = 3,
+			})
 		end)
 		clearphrases.MouseButton1Up:Connect(function(clearedphrases)
 			table.clear(phrases)
+			StarterGui:SetCore("SendNotification", {
+				Title = "Phrases Cleared",
+				Text = "No phrases",
+				Duration = 3,
+			})
 		end)
 		resetphrases.MouseButton1Up:Connect(function()
 			table.clear(phrases)
 			task.spawn(resettable)
+			StarterGui:SetCore("SendNotification", {
+				Title = "Phrases Reset to default",
+				Text = "Default as in the one specified when you executed this script",
+				Duration = 3,
+			})
 		end)
 	end
-
+	
 	task.spawn(onandoff)
-
+	
 	local function spin()
 		if localplr.Character then
 			if localplr.Character:FindFirstChild("HumanoidRootPart") then
@@ -187,9 +212,9 @@ local function GWKM_fake_script() -- botscript.BotMain
 			end
 		end
 	end
-
+	
 	task.spawn(spin)
-
+	
 	local function tablerefresh()
 		table.clear(roots)
 		for i,v in Playerservice:GetChildren() do
@@ -207,7 +232,7 @@ local function GWKM_fake_script() -- botscript.BotMain
 			end
 		end
 	end
-
+	
 	while task.wait(3) do
 		if enabled == true then
 			print("script is enabled")
@@ -235,4 +260,4 @@ local function GWKM_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(GWKM_fake_script)()
+coroutine.wrap(HFAZPFO_fake_script)()
