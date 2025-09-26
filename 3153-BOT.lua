@@ -126,7 +126,7 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function FSKUV_fake_script() -- botscript.BotMain 
+local function DHGVTON_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
@@ -216,6 +216,21 @@ local function FSKUV_fake_script() -- botscript.BotMain
 	
 	task.spawn(spin)
 	
+	local function unsit()
+		if localplr.Character then
+			if localplr.Character:FindFirstChildWhichIsA("Humanoid") then
+				local hum = localplr.Character:FindFirstChildWhichIsA("Humanoid")
+				while task.wait(0.1) do
+					if hum.Sit == true then
+						hum.Sit = false
+					end
+				end
+			end
+		end
+	end
+	
+	task.spawn(unsit)
+	
 	localplr.CharacterAdded:Connect(function()
 		task.spawn(spin)
 	end)
@@ -266,4 +281,4 @@ local function FSKUV_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(FSKUV_fake_script)()
+coroutine.wrap(DHGVTON_fake_script)()
