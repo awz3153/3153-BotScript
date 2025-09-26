@@ -97,7 +97,7 @@ ClearPhrases.Parent = botscript
 ClearPhrases.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
 ClearPhrases.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ClearPhrases.BorderSizePixel = 0
-ClearPhrases.Position = UDim2.new(0.904640794, 0, 0.626617968, 0)
+ClearPhrases.Position = UDim2.new(0.892624021, 0, 0.626617968, 0)
 ClearPhrases.Size = UDim2.new(0, 94, 0, 30)
 ClearPhrases.Font = Enum.Font.Cartoon
 ClearPhrases.Text = "Clear Phrases"
@@ -126,7 +126,7 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function HFAZPFO_fake_script() -- botscript.BotMain 
+local function FSKUV_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
@@ -205,7 +205,8 @@ local function HFAZPFO_fake_script() -- botscript.BotMain
 			if localplr.Character:FindFirstChild("HumanoidRootPart") then
 				local hrp = localplr.Character:FindFirstChild("HumanoidRootPart")
 				if hrp:IsA("Part") then
-					while task.wait() do
+					while hrp.Parent do
+						task.wait()
 						hrp.CFrame *= CFrame.Angles(0,0.1,0)
 					end
 				end
@@ -214,6 +215,11 @@ local function HFAZPFO_fake_script() -- botscript.BotMain
 	end
 	
 	task.spawn(spin)
+	
+	localplr.CharacterAdded:Connect(function()
+		task.spawn(spin)
+	end)
+	
 	
 	local function tablerefresh()
 		table.clear(roots)
@@ -260,4 +266,4 @@ local function HFAZPFO_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(HFAZPFO_fake_script)()
+coroutine.wrap(FSKUV_fake_script)()
