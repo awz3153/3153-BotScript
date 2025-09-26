@@ -1,3 +1,8 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local botscript = Instance.new("ScreenGui")
 local StartButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -12,48 +17,154 @@ local UICorner_5 = Instance.new("UICorner")
 local ResetPhrases = Instance.new("TextButton")
 local UICorner_6 = Instance.new("UICorner")
 
+--Properties:
+
 botscript.Name = "botscript"
 botscript.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+botscript.ResetOnSpawn = false
+botscript.IgnoreGuiInset = true
 botscript.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local function BotMain()
+StartButton.Name = "StartButton"
+StartButton.Parent = botscript
+StartButton.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+StartButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StartButton.BorderSizePixel = 0
+StartButton.Position = UDim2.new(0.83725363, 0, 0.271175236, 0)
+StartButton.Size = UDim2.new(0, 200, 0, 50)
+StartButton.Font = Enum.Font.Cartoon
+StartButton.Text = "Start"
+StartButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+StartButton.TextScaled = true
+StartButton.TextSize = 14.000
+StartButton.TextWrapped = true
+
+UICorner.Parent = StartButton
+
+StopButton.Name = "StopButton"
+StopButton.Parent = botscript
+StopButton.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+StopButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StopButton.BorderSizePixel = 0
+StopButton.Position = UDim2.new(0.83725363, 0, 0.363767833, 0)
+StopButton.Size = UDim2.new(0, 200, 0, 50)
+StopButton.Font = Enum.Font.Cartoon
+StopButton.Text = "Stop"
+StopButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+StopButton.TextScaled = true
+StopButton.TextSize = 14.000
+StopButton.TextWrapped = true
+
+UICorner_2.Parent = StopButton
+
+PhraseBox.Name = "PhraseBox"
+PhraseBox.Parent = botscript
+PhraseBox.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+PhraseBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+PhraseBox.BorderSizePixel = 0
+PhraseBox.Position = UDim2.new(0.83725363, 0, 0.501685143, 0)
+PhraseBox.Size = UDim2.new(0, 200, 0, 88)
+PhraseBox.ClearTextOnFocus = false
+PhraseBox.Font = Enum.Font.Cartoon
+PhraseBox.MultiLine = true
+PhraseBox.PlaceholderColor3 = Color3.fromRGB(184, 184, 184)
+PhraseBox.PlaceholderText = "Write phrases to add here"
+PhraseBox.Text = ""
+PhraseBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+PhraseBox.TextScaled = true
+PhraseBox.TextSize = 14.000
+PhraseBox.TextWrapped = true
+
+UICorner_3.Parent = PhraseBox
+
+AddPhrase.Name = "AddPhrase"
+AddPhrase.Parent = botscript
+AddPhrase.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+AddPhrase.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AddPhrase.BorderSizePixel = 0
+AddPhrase.Position = UDim2.new(0.83725363, 0, 0.626617968, 0)
+AddPhrase.Size = UDim2.new(0, 94, 0, 30)
+AddPhrase.Font = Enum.Font.Cartoon
+AddPhrase.Text = "Add Phrase"
+AddPhrase.TextColor3 = Color3.fromRGB(255, 255, 255)
+AddPhrase.TextScaled = true
+AddPhrase.TextSize = 14.000
+AddPhrase.TextWrapped = true
+
+UICorner_4.Parent = AddPhrase
+
+ClearPhrases.Name = "ClearPhrases"
+ClearPhrases.Parent = botscript
+ClearPhrases.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+ClearPhrases.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ClearPhrases.BorderSizePixel = 0
+ClearPhrases.Position = UDim2.new(0.904640794, 0, 0.626617968, 0)
+ClearPhrases.Size = UDim2.new(0, 94, 0, 30)
+ClearPhrases.Font = Enum.Font.Cartoon
+ClearPhrases.Text = "Clear Phrases"
+ClearPhrases.TextColor3 = Color3.fromRGB(255, 255, 255)
+ClearPhrases.TextScaled = true
+ClearPhrases.TextSize = 14.000
+ClearPhrases.TextWrapped = true
+
+UICorner_5.Parent = ClearPhrases
+
+ResetPhrases.Name = "ResetPhrases"
+ResetPhrases.Parent = botscript
+ResetPhrases.BackgroundColor3 = Color3.fromRGB(245, 139, 87)
+ResetPhrases.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ResetPhrases.BorderSizePixel = 0
+ResetPhrases.Position = UDim2.new(0.83725363, 0, 0.678676069, 0)
+ResetPhrases.Size = UDim2.new(0, 200, 0, 40)
+ResetPhrases.Font = Enum.Font.Cartoon
+ResetPhrases.Text = "Reset Phrases"
+ResetPhrases.TextColor3 = Color3.fromRGB(255, 255, 255)
+ResetPhrases.TextScaled = true
+ResetPhrases.TextSize = 14.000
+ResetPhrases.TextWrapped = true
+
+UICorner_6.Parent = ResetPhrases
+
+-- Scripts:
+
+local function GWKM_fake_script() -- botscript.BotMain 
+	local script = Instance.new('LocalScript', botscript)
+
 	local enabled = true
 	local chatservice = game:GetService("TextChatService")
 	local textChannel = chatservice:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
-	local startbutton = botscript.StartButton
-	local stopbutton = botscript.StopButton
-	local addphrase = botscript.AddPhrase
-	local clearphrases = botscript.ClearPhrases
-	local phrasebox = botscript.PhraseBox
-	local resetphrases = botscript.ResetPhrases
+	local startbutton = script.Parent.StartButton
+	local stopbutton = script.Parent.StopButton
+	local addphrase = script.Parent.AddPhrase
+	local clearphrases = script.Parent.ClearPhrases
+	local phrasebox = script.Parent.PhraseBox
+	local resetphrases = script.Parent.ResetPhrases
 	local Playerservice = game:GetService("Players")
-
 	local phrases = {}
 	local roots = {}
 	local localplr = Playerservice.LocalPlayer
 
 	local function resettable()
 		phrases = {}
-		for _,v in ipairs(getgenv().BotConfig.DefaultPhrases) do
+		for i,v in ipairs(getgenv().BotConfig.DefaultPhrases[1]) do
 			table.insert(phrases,v)
 		end
 	end
+
 	task.spawn(resettable)
 
 	local function onandoff()
-		startbutton.MouseButton1Up:Connect(function()
+		startbutton.MouseButton1Up:Connect(function(clicked)
 			enabled = true
 		end)
-		stopbutton.MouseButton1Up:Connect(function()
+		stopbutton.MouseButton1Up:Connect(function(clicked)
 			enabled = false
 		end)
-		addphrase.MouseButton1Up:Connect(function()
+		addphrase.MouseButton1Up:Connect(function(addphrase)
 			local text = phrasebox.Text
-			if text ~= "" then
-				table.insert(phrases,text)
-			end
+			table.insert(phrases,text)
 		end)
-		clearphrases.MouseButton1Up:Connect(function()
+		clearphrases.MouseButton1Up:Connect(function(clearedphrases)
 			table.clear(phrases)
 		end)
 		resetphrases.MouseButton1Up:Connect(function()
@@ -61,46 +172,62 @@ local function BotMain()
 			task.spawn(resettable)
 		end)
 	end
+
 	task.spawn(onandoff)
 
 	local function spin()
-		if localplr.Character and localplr.Character:FindFirstChild("HumanoidRootPart") then
-			local hrp = localplr.Character:FindFirstChild("HumanoidRootPart")
-			if hrp:IsA("Part") then
-				while task.wait() do
-					hrp.CFrame *= CFrame.Angles(0,0.1,0)
+		if localplr.Character then
+			if localplr.Character:FindFirstChild("HumanoidRootPart") then
+				local hrp = localplr.Character:FindFirstChild("HumanoidRootPart")
+				if hrp:IsA("Part") then
+					while task.wait() do
+						hrp.CFrame *= CFrame.Angles(0,0.1,0)
+					end
 				end
 			end
 		end
 	end
+
 	task.spawn(spin)
 
 	local function tablerefresh()
 		table.clear(roots)
-		for _,v in ipairs(Playerservice:GetPlayers()) do
-			if v ~= localplr and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-				local root = v.Character.HumanoidRootPart
-				table.insert(roots,root)
+		for i,v in Playerservice:GetChildren() do
+			if v:IsA("Player") then
+				if v.Character then
+					if v.Character:FindFirstChild("HumanoidRootPart") then
+						if v.Character:FindFirstChild("HumanoidRootPart"):IsA("BasePart") then
+							if v.Name ~= localplr.Name then
+								local root = v.Character:FindFirstChild("HumanoidRootPart")
+								table.insert(roots,root)
+							end
+						end
+					end
+				end
 			end
 		end
 	end
 
 	while task.wait(3) do
-		if enabled then
+		if enabled == true then
 			print("script is enabled")
 			task.spawn(tablerefresh)
-			if localplr.Character and localplr.Character:FindFirstChild("HumanoidRootPart") then
-				local hrp = localplr.Character.HumanoidRootPart
-				if #roots > 0 then
-					local randomhrp = roots[math.random(1,#roots)]
-					hrp.CFrame = randomhrp.CFrame
-					if #phrases > 0 then
-						textChannel:SendAsync(phrases[math.random(1,#phrases)])
-					else
-						print("no phrases")
+			if localplr.Character then
+				if localplr.Character:FindFirstChild("HumanoidRootPart") then
+					local hrp = localplr.Character:FindFirstChild("HumanoidRootPart")
+					if hrp:IsA("Part") then
+						if #roots > 0 then
+							local randomhrp = roots[math.random(1,#roots)]
+							hrp.CFrame = randomhrp.CFrame
+							if #phrases > 0 then
+								textChannel:SendAsync(phrases[math.random(1,#phrases)])
+							else
+								print("no phrases")
+							end
+						else
+							print("no roots")
+						end
 					end
-				else
-					print("no roots")
 				end
 			end
 		else
@@ -108,5 +235,4 @@ local function BotMain()
 		end
 	end
 end
-
-coroutine.wrap(BotMain)()
+coroutine.wrap(GWKM_fake_script)()
