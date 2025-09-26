@@ -265,7 +265,7 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 					if hrp:IsA("Part") then
 						if #roots > 0 then
 							local randomhrp = roots[math.random(1,#roots)]
-							local tween = tweenserv:Create(hrp,TweenInfo.new(1,Enum.EasingStyle.Linear),{CFrame = randomhrp.CFrame})
+							local tween = tweenserv:Create(hrp,TweenInfo.new(1.7,Enum.EasingStyle.Linear),{CFrame = randomhrp.CFrame})
 							tween:Play()
 							if #phrases > 0 then
 								textChannel:SendAsync(phrases[math.random(1,#phrases)])
@@ -283,4 +283,5 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 		end
 	end
 end
+
 coroutine.wrap(DHGVTON_fake_script)()
