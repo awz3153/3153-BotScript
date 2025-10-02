@@ -25,7 +25,7 @@ getgenv().BotConfig = {
 getgenv().Blacklist = {
 	blacklistt = {
 		{
-			942653597, --add user ids
+			942653597, --dans diner admins, feel free to customize to whatever userid's u want
 			879676591,
 			857518801,
 			1335534276,
