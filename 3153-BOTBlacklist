@@ -126,7 +126,7 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function NCIVT_fake_script() -- botscript.BotMain 
+local function TLEE_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
@@ -168,6 +168,7 @@ local function NCIVT_fake_script() -- botscript.BotMain
 		end)
 	end
 	
+	task.spawn(blacklist)
 	task.spawn(refreshblacklist)
 	task.spawn(resettable)
 	
@@ -299,4 +300,4 @@ local function NCIVT_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(NCIVT_fake_script)()
+coroutine.wrap(TLEE_fake_script)()
