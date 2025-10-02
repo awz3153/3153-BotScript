@@ -126,7 +126,7 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function JPWF_fake_script() -- botscript.BotMain 
+local function CCYU_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
@@ -142,9 +142,7 @@ local function JPWF_fake_script() -- botscript.BotMain
 	local Playerservice = game:GetService("Players")
 	local phrases = {}
 	local roots = {}
-	local blacklisted = {
-		9622393564
-	}
+	local blacklisted = {}
 	local localplr = Playerservice.LocalPlayer
 	
 	local function resettable()
@@ -165,15 +163,24 @@ local function JPWF_fake_script() -- botscript.BotMain
 	local function scanserver()
 		while task.wait(0.1) do
 			for i,v in pairs(Playerservice:GetPlayers()) do
-				for i,userids in ipairs(blacklisted) do
-					if v.UserId == userids then
-						localplr:Kick("You cannot be in a server with this person")
+				if #blacklisted > 0 then
+					for i,userids in ipairs(blacklisted) do
+						if v.UserId == userids then
+							localplr:Kick("You cannot be in a server with this person")
+						end
 					end
 				end
 			end
 		end
 	end
 	
+	local function refbblacklist()
+		for i,v in ipairs(getgenv().Blacklist.blacklistt[1]) do
+			table.insert(blacklisted,v)
+		end
+	end
+	
+	task.spawn(refbblacklist)
 	task.spawn(scanserver)
 	task.spawn(resettable)
 	
@@ -304,4 +311,4 @@ local function JPWF_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(JPWF_fake_script)()
+coroutine.wrap(CCYU_fake_script)()
