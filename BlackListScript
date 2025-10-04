@@ -126,24 +126,25 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function CCYU_fake_script() -- botscript.BotMain 
+local function HVGGR_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
 	local StarterGui = game:GetService("StarterGui")
 	local chatservice = game:GetService("TextChatService")
 	local textChannel = chatservice:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
-	local startbutton = script.Parent.StartButton
-	local stopbutton = script.Parent.StopButton
-	local addphrase = script.Parent.AddPhrase
-	local clearphrases = script.Parent.ClearPhrases
-	local phrasebox = script.Parent.PhraseBox
-	local resetphrases = script.Parent.ResetPhrases
+	local startbutton = script.Parent:WaitForChild("StartButton")
+	local stopbutton = script.Parent:WaitForChild("StopButton")
+	local addphrase = script.Parent:WaitForChild("AddPhrase")
+	local clearphrases = script.Parent:WaitForChild("ClearPhrases")
+	local phrasebox = script.Parent:WaitForChild("PhraseBox")
+	local resetphrases = script.Parent:WaitForChild("ResetPhrases")
 	local Playerservice = game:GetService("Players")
 	local phrases = {}
 	local roots = {}
 	local blacklisted = {}
 	local localplr = Playerservice.LocalPlayer
+	local teleportserv = game:GetService("TeleportService")
 	
 	local function resettable()
 		phrases = {}
@@ -155,7 +156,8 @@ local function CCYU_fake_script() -- botscript.BotMain
 	game.Players.PlayerAdded:Connect(function(plr)
 		for i,v in pairs(blacklisted) do
 			if plr.UserId == v then
-				localplr:Kick("You cannot be in a server with this person")
+				teleportserv:TeleportAsync(game.GameId,localplr)
+	--			localplr:Kick("You cannot be in a server with this person")
 			end
 		end
 	end)
@@ -311,4 +313,4 @@ local function CCYU_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(CCYU_fake_script)()
+coroutine.wrap(HVGGR_fake_script)()
