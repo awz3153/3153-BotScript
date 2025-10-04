@@ -167,7 +167,7 @@ local function HVGGR_fake_script() -- botscript.BotMain
 				if #blacklisted > 0 then
 					for i,userids in ipairs(blacklisted) do
 						if v.UserId == userids then
-							localplr:Kick("You cannot be in a server with this person")
+							teleportserv:TeleportAsync(game.GameId,localplr)
 						end
 					end
 				end
