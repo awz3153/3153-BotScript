@@ -52,7 +52,7 @@ getgenv().Blacklist = {
 }
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/awz3153/3153-BotScript/refs/heads/main/BlackListScript"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/awz3153/3153-BotScript/refs/heads/main/BlackListScript.lua"))()
 ```
 
 non blacklist versions(for some reason):
