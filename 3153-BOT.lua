@@ -126,23 +126,25 @@ UICorner_6.Parent = ResetPhrases
 
 -- Scripts:
 
-local function DHGVTON_fake_script() -- botscript.BotMain 
+local function BLQRFBV_fake_script() -- botscript.BotMain 
 	local script = Instance.new('LocalScript', botscript)
 
 	local enabled = true
 	local StarterGui = game:GetService("StarterGui")
 	local chatservice = game:GetService("TextChatService")
 	local textChannel = chatservice:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
-	local startbutton = script.Parent.StartButton
-	local stopbutton = script.Parent.StopButton
-	local addphrase = script.Parent.AddPhrase
-	local clearphrases = script.Parent.ClearPhrases
-	local phrasebox = script.Parent.PhraseBox
-	local resetphrases = script.Parent.ResetPhrases
+	local startbutton = script.Parent:WaitForChild("StartButton")
+	local stopbutton = script.Parent:WaitForChild("StopButton")
+	local addphrase = script.Parent:WaitForChild("AddPhrase")
+	local clearphrases = script.Parent:WaitForChild("ClearPhrases")
+	local phrasebox = script.Parent:WaitForChild("PhraseBox")
+	local resetphrases = script.Parent:WaitForChild("ResetPhrases")
 	local Playerservice = game:GetService("Players")
 	local phrases = {}
 	local roots = {}
+	local blacklisted = {}
 	local localplr = Playerservice.LocalPlayer
+	local teleportserv = game:GetService("TeleportService")
 	
 	local function resettable()
 		phrases = {}
@@ -151,6 +153,36 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 		end
 	end
 	
+	game.Players.PlayerAdded:Connect(function(plr)
+		for i,v in pairs(blacklisted) do
+			if plr.UserId == v then
+				localplr:Kick("You cannot be in a server with this person")
+			end
+		end
+	end)
+	
+	local function scanserver()
+		while task.wait(0.1) do
+			for i,v in pairs(Playerservice:GetPlayers()) do
+				if #blacklisted > 0 then
+					for i,userids in ipairs(blacklisted) do
+						if v.UserId == userids then
+							localplr:Kick("You cannot be in a server with this person")
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	local function refbblacklist()
+		for i,v in ipairs(getgenv().Blacklist.blacklistt[1]) do
+			table.insert(blacklisted,v)
+		end
+	end
+	
+	task.spawn(refbblacklist)
+	task.spawn(scanserver)
 	task.spawn(resettable)
 	
 	local function onandoff()
@@ -235,7 +267,6 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 		task.spawn(spin)
 	end)
 	
-	
 	local function tablerefresh()
 		table.clear(roots)
 		for i,v in Playerservice:GetChildren() do
@@ -281,4 +312,4 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 		end
 	end
 end
-coroutine.wrap(DHGVTON_fake_script)()
+coroutine.wrap(BLQRFBV_fake_script)()
