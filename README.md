@@ -6,18 +6,18 @@ Here's the script: (change phrases as needed or fiddle with the thing ingame idf
 getgenv().BotConfig = {
     DefaultPhrases = {
         {
-            "The Void Cult is the best! /fcyhKYuT!",
-            "/fcyhKYuT on blue to join the Void Cult Cut Haven!",
-            "in order to join the Void Cult server -> /fcyhKYuT",
-            "/fcyhKYuT. Do you want to draw blood for Noli?",
-            "The void cult accepts all /fcyhKYuT. Praise Noli!",
-            "Noli is the only real true god! /fcyhKYuT",
-            "awz_3k on blue to join our VoidCult community",
-            "Join Void Cult Today! /fcyhKYuT",
-            "This is for my Doggy! Don't threaten me! /fcyhKYuT",
-            "To join the Void cult you can use this! -> /fcyhKYuT",
-            "Praise Noli! /fcyhKYuT (narz was here)",
-            "Noli is the only true and real god. Draw Blood for Noli. /fcyhKYuT",
+            "The Void Cult is the best! /GsDRVhHjPN!",
+            "/GsDRVhHjPN on blue to join the Void Cult Cut Haven!",
+            "in order to join the Void Cult server -> /GsDRVhHjPN",
+            "/GsDRVhHjPN. Do you want to draw blood for Noli?",
+            "The void cult accepts all /GsDRVhHjPN. Praise Noli!",
+            "Noli is the only real true god! /GsDRVhHjPN",
+            "awz_3d on blue to join our VoidCult community",
+            "Join Void Cult Today! /GsDRVhHjPN",
+            "This is for my Doggy! Don't threaten me! /GsDRVhHjPN",
+            "To join the Void cult you can use this! -> /GsDRVhHjPN",
+            "Praise Noli! /GsDRVhHjPN",
+            "Noli is the only true and real god. Draw Blood for Noli. /GsDRVhHjPN",
         }
     }
 }
@@ -65,18 +65,18 @@ local function awz()
     getgenv().BotConfig = {
         DefaultPhrases = {
            {
-            "The Void Cult is the best! /fcyhKYuT!",
-            "/fcyhKYuT on blue to join the Void Cult Cut Haven!",
-            "in order to join the Void Cult server -> /fcyhKYuT",
-            "/fcyhKYuT. Do you want to draw blood for Noli?",
-            "The void cult accepts all /fcyhKYuT. Praise Noli!",
-            "Noli is the only real true god! /fcyhKYuT",
-            "awz_3k on blue to join our VoidCult community",
-            "Join Void Cult Today! /fcyhKYuT",
-            "This is for my Doggy! Don't threaten me! /fcyhKYuT",
-            "To join the Void cult you can use this! -> /fcyhKYuT",
-            "Praise Noli! /fcyhKYuT (narz was here)",
-            "Noli is the only true and real god. Draw Blood for Noli. /fcyhKYuT",
+            "The Void Cult is the best! /GsDRVhHjPN!",
+            "/GsDRVhHjPN on blue to join the Void Cult Cut Haven!",
+            "in order to join the Void Cult server -> /GsDRVhHjPN",
+            "/GsDRVhHjPN. Do you want to draw blood for Noli?",
+            "The void cult accepts all /GsDRVhHjPN. Praise Noli!",
+            "Noli is the only real true god! /GsDRVhHjPN",
+            "awz_3d on blue to join our VoidCult community",
+            "Join Void Cult Today! /GsDRVhHjPN",
+            "This is for my Doggy! Don't threaten me! /GsDRVhHjPN",
+            "To join the Void cult you can use this! -> /GsDRVhHjPN",
+            "Praise Noli! /GsDRVhHjPN",
+            "Noli is the only true and real god. Draw Blood for Noli. /GsDRVhHjPN",
         }
         }
     }
