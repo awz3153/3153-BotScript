@@ -144,16 +144,16 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 	local phrases = {}
 	local roots = {}
 	local localplr = Playerservice.LocalPlayer
-	
+
 	local function resettable()
 		phrases = {}
 		for i,v in ipairs(getgenv().BotConfig.DefaultPhrases[1]) do
 			table.insert(phrases,v)
 		end
 	end
-	
+
 	task.spawn(resettable)
-	
+
 	local function onandoff()
 		startbutton.MouseButton1Up:Connect(function(clicked)
 			enabled = true
@@ -198,9 +198,9 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 			})
 		end)
 	end
-	
+
 	task.spawn(onandoff)
-	
+
 	local function spin()
 		if localplr.Character then
 			if localplr.Character:FindFirstChild("HumanoidRootPart") then
@@ -214,9 +214,9 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 			end
 		end
 	end
-	
+
 	task.spawn(spin)
-	
+
 	local function unsit()
 		if localplr.Character then
 			if localplr.Character:FindFirstChildWhichIsA("Humanoid") then
@@ -229,14 +229,14 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 			end
 		end
 	end
-	
+
 	task.spawn(unsit)
-	
+
 	localplr.CharacterAdded:Connect(function()
 		task.spawn(spin)
 	end)
-	
-	
+
+
 	local function tablerefresh()
 		table.clear(roots)
 		for i,v in Playerservice:GetChildren() do
@@ -254,7 +254,7 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 			end
 		end
 	end
-	
+
 	while task.wait(3) do
 		if enabled == true then
 			print("script is enabled")
@@ -266,7 +266,7 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 						if #roots > 0 then
 							local randomhrp = roots[math.random(1,#roots)]
 							if #phrases > 0 then
-								textChannel:SendAsync(phrases[math.random(1,#phrases)])
+								textChannel:SendAsync(phrases[math.random(1,#phrases)]+" "+tostring(math.random(1,9)))
 							else
 								print("no phrases")
 							end
