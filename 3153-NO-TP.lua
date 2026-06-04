@@ -266,7 +266,7 @@ local function DHGVTON_fake_script() -- botscript.BotMain
 						if #roots > 0 then
 							local randomhrp = roots[math.random(1,#roots)]
 							if #phrases > 0 then
-								textChannel:SendAsync(phrases[math.random(1,#phrases)]+" "+tostring(math.random(1,9)))
+								textChannel:SendAsync(phrases[math.random(1,#phrases)].." "..tostring(math.random(1,9)))
 							else
 								print("no phrases")
 							end
